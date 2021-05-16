@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abc import ABC, abstractmethod
 
 
 def create_updater(item):
@@ -27,22 +28,18 @@ class GildedRose(object):
             self.update_item(item)
 
 
-class ItemUpdater:
+class BaseItemUpdater(ABC):
     def __init__(self, item):
         self.item = item
 
-    def degrade(self):
-        if self.item.quality > 0:
-            self.item.quality = self.item.quality - 1
+    @abstractmethod
+    def standard_update(self): ...
 
-    def standard_update(self):
-        self.degrade()
+    @abstractmethod
+    def expired_update(self): ...
 
     def reduce_sell_in(self):
         self.item.sell_in = self.item.sell_in - 1
-
-    def expired_update(self):
-        self.degrade()
 
     def update(self):
         self.standard_update()
@@ -52,7 +49,19 @@ class ItemUpdater:
             self.expired_update()
 
 
-class MaturingItemUpdater(ItemUpdater):
+class ItemUpdater(BaseItemUpdater):
+    def degrade(self):
+        if self.item.quality > 0:
+            self.item.quality = self.item.quality - 1
+
+    def standard_update(self):
+        self.degrade()
+
+    def expired_update(self):
+        self.degrade()
+
+
+class MaturingItemUpdater(BaseItemUpdater):
     def upgrade(self):
         if self.item.quality < 50:
             self.item.quality = self.item.quality + 1
@@ -76,7 +85,7 @@ class BackstagePassUpdater(MaturingItemUpdater):
         self.item.quality = 0
 
 
-class SulfurasUpdater(ItemUpdater):
+class SulfurasUpdater(BaseItemUpdater):
     def standard_update(self):
         pass
 
