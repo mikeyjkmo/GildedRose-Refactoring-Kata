@@ -6,51 +6,57 @@ class GildedRose(object):
         self.items = items
 
     def update_item(self, item):
-        def degrade():
-            if item.quality > 0:
-                item.quality = item.quality - 1
-
-        def upgrade():
-            if item.quality < 50:
-                item.quality = item.quality + 1
-
-        def standard_update():
-            if item.name == "Aged Brie":
-                upgrade()
-            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                upgrade()
-                if item.sell_in < 11:
-                    upgrade()
-                if item.sell_in < 6:
-                    upgrade()
-            elif item.name == "Sulfuras, Hand of Ragnaros":
-                pass
-            else:
-                degrade()
-
-        def reduce_sell_in():
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-
-        def expired_update():
-            if item.name == "Aged Brie":
-                upgrade()
-            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                item.quality = 0
-            elif item.name == "Sulfuras, Hand of Ragnaros":
-                pass
-            else:
-                degrade()
-
-        standard_update()
-        reduce_sell_in()
+        updater = ItemUpdater(item)
+        updater.standard_update()
+        updater.reduce_sell_in()
 
         if item.sell_in < 0:
-            expired_update()
+            updater.expired_update()
 
     def update_quality(self):
         for item in self.items:
             self.update_item(item)
+
+
+class ItemUpdater:
+    def __init__(self, item):
+        self.item = item
+
+    def degrade(self):
+        if self.item.quality > 0:
+            self.item.quality = self.item.quality - 1
+
+    def upgrade(self):
+        if self.item.quality < 50:
+            self.item.quality = self.item.quality + 1
+
+    def standard_update(self):
+        if self.item.name == "Aged Brie":
+            self.upgrade()
+        elif self.item.name == "Backstage passes to a TAFKAL80ETC concert":
+            self.upgrade()
+            if self.item.sell_in < 11:
+                self.upgrade()
+            if self.item.sell_in < 6:
+                self.upgrade()
+        elif self.item.name == "Sulfuras, Hand of Ragnaros":
+            pass
+        else:
+            self.degrade()
+
+    def reduce_sell_in(self):
+        if self.item.name != "Sulfuras, Hand of Ragnaros":
+            self.item.sell_in = self.item.sell_in - 1
+
+    def expired_update(self):
+        if self.item.name == "Aged Brie":
+            self.upgrade()
+        elif self.item.name == "Backstage passes to a TAFKAL80ETC concert":
+            self.item.quality = 0
+        elif self.item.name == "Sulfuras, Hand of Ragnaros":
+            pass
+        else:
+            self.degrade()
 
 
 class Item:
