@@ -11,17 +11,19 @@ class GildedRose(object):
                 if item.name != "Sulfuras, Hand of Ragnaros":
                     item.quality = item.quality - 1
 
+        def upgrade():
+            if item.quality < 50:
+                item.quality = item.quality + 1
+
         def standard_update():
-            if item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
+            if item.name == "Aged Brie":
+                upgrade()
+            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+                upgrade()
+                if item.sell_in < 11:
+                    upgrade()
+                if item.sell_in < 6:
+                    upgrade()
             else:
                 degrade()
 
