@@ -36,10 +36,6 @@ class ItemUpdater:
         if self.item.quality > 0:
             self.item.quality = self.item.quality - 1
 
-    def upgrade(self):
-        if self.item.quality < 50:
-            self.item.quality = self.item.quality + 1
-
     def standard_update(self):
         self.degrade()
 
@@ -51,6 +47,10 @@ class ItemUpdater:
 
 
 class AgedBrieUpdater(ItemUpdater):
+    def upgrade(self):
+        if self.item.quality < 50:
+            self.item.quality = self.item.quality + 1
+
     def standard_update(self):
         self.upgrade()
 
@@ -58,7 +58,7 @@ class AgedBrieUpdater(ItemUpdater):
         self.upgrade()
 
 
-class BackstagePassUpdater(ItemUpdater):
+class BackstagePassUpdater(AgedBrieUpdater):
     def standard_update(self):
         self.upgrade()
         if self.item.sell_in < 11:
