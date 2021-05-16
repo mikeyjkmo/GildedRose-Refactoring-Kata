@@ -21,7 +21,7 @@ def test_golden_master():
         Item(
             name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49
         ),
-        Item(name="Conjured Mana Cake", sell_in=3, quality=6),  # <-- :O
+        Item(name="Conjured Mana Cake", sell_in=3, quality=7),  # <-- :O
     ]
 
     results = [[f"({item})" for item in items]]
@@ -41,7 +41,7 @@ def test_golden_master():
             "(Backstage passes to a TAFKAL80ETC concert, 15, 20)",
             "(Backstage passes to a TAFKAL80ETC concert, 10, 49)",
             "(Backstage passes to a TAFKAL80ETC concert, 5, 49)",
-            "(Conjured Mana Cake, 3, 6)",
+            "(Conjured Mana Cake, 3, 7)",
         ],
         [
             "(+5 Dexterity Vest, 9, 19)",
@@ -63,7 +63,7 @@ def test_golden_master():
             "(Backstage passes to a TAFKAL80ETC concert, 13, 22)",
             "(Backstage passes to a TAFKAL80ETC concert, 8, 50)",
             "(Backstage passes to a TAFKAL80ETC concert, 3, 50)",
-            "(Conjured Mana Cake, 1, 4)",
+            "(Conjured Mana Cake, 1, 3)",
         ],
         [
             "(+5 Dexterity Vest, 7, 17)",
@@ -74,7 +74,7 @@ def test_golden_master():
             "(Backstage passes to a TAFKAL80ETC concert, 12, 23)",
             "(Backstage passes to a TAFKAL80ETC concert, 7, 50)",
             "(Backstage passes to a TAFKAL80ETC concert, 2, 50)",
-            "(Conjured Mana Cake, 0, 3)",
+            "(Conjured Mana Cake, 0, 1)",
         ],
         [
             "(+5 Dexterity Vest, 6, 16)",
@@ -85,7 +85,7 @@ def test_golden_master():
             "(Backstage passes to a TAFKAL80ETC concert, 11, 24)",
             "(Backstage passes to a TAFKAL80ETC concert, 6, 50)",
             "(Backstage passes to a TAFKAL80ETC concert, 1, 50)",
-            "(Conjured Mana Cake, -1, 1)",
+            "(Conjured Mana Cake, -1, 0)",
         ],
         [
             "(+5 Dexterity Vest, 5, 15)",

@@ -7,6 +7,8 @@ def create_updater(item):
         return BackstagePassUpdater(item)
     elif item.name == "Sulfuras, Hand of Ragnaros":
         return SulfurasUpdater(item)
+    elif item.name.startswith("Conjured"):
+        return ConjuredItemUpdater(item)
 
     return ItemUpdater(item)
 
@@ -82,6 +84,12 @@ class SulfurasUpdater(ItemUpdater):
 
     def expired_update(self):
         pass
+
+
+class ConjuredItemUpdater(ItemUpdater):
+    def degrade(self):
+        super().degrade()
+        super().degrade()
 
 
 
