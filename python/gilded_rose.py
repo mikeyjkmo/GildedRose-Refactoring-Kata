@@ -41,13 +41,7 @@ class ItemUpdater:
             self.item.quality = self.item.quality + 1
 
     def standard_update(self):
-        if self.item.name == "Backstage passes to a TAFKAL80ETC concert":
-            self.upgrade()
-            if self.item.sell_in < 11:
-                self.upgrade()
-            if self.item.sell_in < 6:
-                self.upgrade()
-        elif self.item.name == "Sulfuras, Hand of Ragnaros":
+        if self.item.name == "Sulfuras, Hand of Ragnaros":
             pass
         else:
             self.degrade()
@@ -74,7 +68,12 @@ class AgedBrieUpdater(ItemUpdater):
 
 
 class BackstagePassUpdater(ItemUpdater):
-    pass
+    def standard_update(self):
+        self.upgrade()
+        if self.item.sell_in < 11:
+            self.upgrade()
+        if self.item.sell_in < 6:
+            self.upgrade()
 
 
 class SulfurasUpdater(ItemUpdater):
