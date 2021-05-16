@@ -8,8 +8,7 @@ class GildedRose(object):
     def update_item(self, item):
         def degrade():
             if item.quality > 0:
-                if item.name != "Sulfuras, Hand of Ragnaros":
-                    item.quality = item.quality - 1
+                item.quality = item.quality - 1
 
         def upgrade():
             if item.quality < 50:
@@ -24,6 +23,8 @@ class GildedRose(object):
                     upgrade()
                 if item.sell_in < 6:
                     upgrade()
+            elif item.name == "Sulfuras, Hand of Ragnaros":
+                pass
             else:
                 degrade()
 
@@ -32,16 +33,14 @@ class GildedRose(object):
                 item.sell_in = item.sell_in - 1
 
         def expired_update():
-            if item.name != "Aged Brie":
-                if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                    if item.quality > 0:
-                        if item.name != "Sulfuras, Hand of Ragnaros":
-                            item.quality = item.quality - 1
-                else:
-                    item.quality = item.quality - item.quality
+            if item.name == "Aged Brie":
+                upgrade()
+            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+                item.quality = 0
+            elif item.name == "Sulfuras, Hand of Ragnaros":
+                pass
             else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
+                degrade()
 
         standard_update()
         reduce_sell_in()
