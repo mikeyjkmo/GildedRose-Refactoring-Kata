@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 def create_updater(item):
+    if item.name == "Aged Brie":
+        return AgedBrieUpdater(item)
+    elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+        return BackstagePassUpdater(item)
+    elif item.name == "Sulfuras, Hand of Ragnaros":
+        return SulfurasUpdater(item)
+
     return ItemUpdater(item)
 
 class GildedRose(object):
@@ -63,6 +70,14 @@ class ItemUpdater:
 
 
 class AgedBrieUpdater(ItemUpdater):
+    pass
+
+
+class BackstagePassUpdater(ItemUpdater):
+    pass
+
+
+class SulfurasUpdater(ItemUpdater):
     pass
 
 
