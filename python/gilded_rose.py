@@ -51,9 +51,7 @@ class ItemUpdater:
             self.item.sell_in = self.item.sell_in - 1
 
     def expired_update(self):
-        if self.item.name == "Backstage passes to a TAFKAL80ETC concert":
-            self.item.quality = 0
-        elif self.item.name == "Sulfuras, Hand of Ragnaros":
+        if self.item.name == "Sulfuras, Hand of Ragnaros":
             pass
         else:
             self.degrade()
@@ -74,6 +72,9 @@ class BackstagePassUpdater(ItemUpdater):
             self.upgrade()
         if self.item.sell_in < 6:
             self.upgrade()
+
+    def expired_update(self):
+        self.item.quality = 0
 
 
 class SulfurasUpdater(ItemUpdater):
