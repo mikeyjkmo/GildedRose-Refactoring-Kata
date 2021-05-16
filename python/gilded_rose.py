@@ -44,8 +44,7 @@ class ItemUpdater:
         self.degrade()
 
     def reduce_sell_in(self):
-        if self.item.name != "Sulfuras, Hand of Ragnaros":
-            self.item.sell_in = self.item.sell_in - 1
+        self.item.sell_in = self.item.sell_in - 1
 
     def expired_update(self):
         if self.item.name == "Sulfuras, Hand of Ragnaros":
@@ -76,6 +75,9 @@ class BackstagePassUpdater(ItemUpdater):
 
 class SulfurasUpdater(ItemUpdater):
     def standard_update(self):
+        pass
+
+    def reduce_sell_in(self):
         pass
 
 
