@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def create_updater(item):
     if item.name == "Aged Brie":
         return MaturingItemUpdater(item)
@@ -90,7 +91,6 @@ class ConjuredItemUpdater(ItemUpdater):
     def degrade(self):
         super().degrade()
         super().degrade()
-
 
 
 class Item:
