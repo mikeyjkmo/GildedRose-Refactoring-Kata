@@ -47,10 +47,7 @@ class ItemUpdater:
         self.item.sell_in = self.item.sell_in - 1
 
     def expired_update(self):
-        if self.item.name == "Sulfuras, Hand of Ragnaros":
-            pass
-        else:
-            self.degrade()
+        self.degrade()
 
 
 class AgedBrieUpdater(ItemUpdater):
@@ -79,6 +76,10 @@ class SulfurasUpdater(ItemUpdater):
 
     def reduce_sell_in(self):
         pass
+
+    def expired_update(self):
+        pass
+
 
 
 class Item:
