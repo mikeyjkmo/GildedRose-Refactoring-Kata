@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
+def create_updater(item):
+    return ItemUpdater(item)
+
 class GildedRose(object):
 
     def __init__(self, items):
         self.items = items
 
     def update_item(self, item):
-        updater = ItemUpdater(item)
+        updater = create_updater(item)
         updater.standard_update()
         updater.reduce_sell_in()
 
@@ -57,6 +60,10 @@ class ItemUpdater:
             pass
         else:
             self.degrade()
+
+
+class AgedBrieUpdater(ItemUpdater):
+    pass
 
 
 class Item:
