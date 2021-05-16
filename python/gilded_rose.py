@@ -22,10 +22,12 @@ class GildedRose(object):
                             if item.quality < 50:
                                 item.quality = item.quality + 1
 
-        standard_update()
+        def reduce_sell_in():
+            if item.name != "Sulfuras, Hand of Ragnaros":
+                item.sell_in = item.sell_in - 1
 
-        if item.name != "Sulfuras, Hand of Ragnaros":
-            item.sell_in = item.sell_in - 1
+        standard_update()
+        reduce_sell_in()
 
         if item.sell_in < 0:
             if item.name != "Aged Brie":
