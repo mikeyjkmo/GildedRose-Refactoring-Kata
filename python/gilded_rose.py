@@ -2,7 +2,7 @@
 
 def create_updater(item):
     if item.name == "Aged Brie":
-        return AgedBrieUpdater(item)
+        return MaturingItemUpdater(item)
     elif item.name == "Backstage passes to a TAFKAL80ETC concert":
         return BackstagePassUpdater(item)
     elif item.name == "Sulfuras, Hand of Ragnaros":
@@ -46,7 +46,7 @@ class ItemUpdater:
         self.degrade()
 
 
-class AgedBrieUpdater(ItemUpdater):
+class MaturingItemUpdater(ItemUpdater):
     def upgrade(self):
         if self.item.quality < 50:
             self.item.quality = self.item.quality + 1
@@ -58,7 +58,7 @@ class AgedBrieUpdater(ItemUpdater):
         self.upgrade()
 
 
-class BackstagePassUpdater(AgedBrieUpdater):
+class BackstagePassUpdater(MaturingItemUpdater):
     def standard_update(self):
         self.upgrade()
         if self.item.sell_in < 11:
