@@ -17,11 +17,7 @@ class GildedRose(object):
 
     def update_item(self, item):
         updater = create_updater(item)
-        updater.standard_update()
-        updater.reduce_sell_in()
-
-        if item.sell_in < 0:
-            updater.expired_update()
+        updater.update()
 
     def update_quality(self):
         for item in self.items:
@@ -44,6 +40,13 @@ class ItemUpdater:
 
     def expired_update(self):
         self.degrade()
+
+    def update(self):
+        self.standard_update()
+        self.reduce_sell_in()
+
+        if self.item.sell_in < 0:
+            self.expired_update()
 
 
 class MaturingItemUpdater(ItemUpdater):
