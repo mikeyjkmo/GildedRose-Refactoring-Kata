@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "gilded-rose-mikey"
+version = "0.1.0"
+description = ""
+authors = ["Mikey Mo <mikeyjkmo@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+black = "^21.5b1"
+pytest = "^6.2.4"
+pytest-watch = "^4.2.0"
+pytest-icdiff = "^0.5"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
