@@ -62,8 +62,7 @@ class ItemUpdater(BaseItemUpdater):
 
 class MaturingItemUpdater(BaseItemUpdater):
     def upgrade(self):
-        if self.item.quality < 50:
-            self.item.quality = self.item.quality + 1
+        self.item.quality = min(50, self.item.quality + 1)
 
     def standard_update(self):
         self.upgrade()
