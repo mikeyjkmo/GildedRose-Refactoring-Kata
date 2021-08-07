@@ -61,23 +61,23 @@ class ItemUpdater(BaseItemUpdater):
 
 
 class MaturingItemUpdater(BaseItemUpdater):
-    def upgrade(self):
-        self.item.quality = min(50, self.item.quality + 1)
+    def upgrade(self, amount):
+        self.item.quality = min(50, self.item.quality + amount)
 
     def standard_update(self):
-        self.upgrade()
+        self.upgrade(1)
 
     def expired_update(self):
-        self.upgrade()
+        self.upgrade(1)
 
 
 class BackstagePassUpdater(MaturingItemUpdater):
     def standard_update(self):
-        self.upgrade()
+        self.upgrade(1)
         if self.item.sell_in < 11:
-            self.upgrade()
+            self.upgrade(1)
         if self.item.sell_in < 6:
-            self.upgrade()
+            self.upgrade(1)
 
     def expired_update(self):
         self.item.quality = 0
