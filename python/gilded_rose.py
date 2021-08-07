@@ -96,11 +96,8 @@ class SulfurasUpdater(BaseItemUpdater):
 
 
 class ConjuredItemUpdater(ItemUpdater):
-    def standard_update(self):
-        self.degrade(2)
-
-    def expired_update(self):
-        self.degrade(2)
+    def degrade(self, amount):
+        super().degrade(amount * 2)
 
 
 class Item:
