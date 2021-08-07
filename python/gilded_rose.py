@@ -73,10 +73,11 @@ class MaturingItemUpdater(BaseItemUpdater):
 
 class BackstagePassUpdater(MaturingItemUpdater):
     def standard_update(self):
-        self.upgrade(1)
-        if self.item.sell_in < 11:
-            self.upgrade(1)
-        if self.item.sell_in < 6:
+        if self.item.sell_in <= 5:
+            self.upgrade(3)
+        elif self.item.sell_in <= 10:
+            self.upgrade(2)
+        else:
             self.upgrade(1)
 
     def expired_update(self):
