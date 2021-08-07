@@ -51,8 +51,7 @@ class BaseItemUpdater(ABC):
 
 class ItemUpdater(BaseItemUpdater):
     def degrade(self):
-        if self.item.quality > 0:
-            self.item.quality = self.item.quality - 1
+        self.item.quality = max(0, self.item.quality - 1)
 
     def standard_update(self):
         self.degrade()
