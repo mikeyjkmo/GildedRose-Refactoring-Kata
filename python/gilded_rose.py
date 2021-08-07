@@ -50,14 +50,14 @@ class BaseItemUpdater(ABC):
 
 
 class ItemUpdater(BaseItemUpdater):
-    def degrade(self):
-        self.item.quality = max(0, self.item.quality - 1)
+    def degrade(self, amount):
+        self.item.quality = max(0, self.item.quality - amount)
 
     def standard_update(self):
-        self.degrade()
+        self.degrade(1)
 
     def expired_update(self):
-        self.degrade()
+        self.degrade(1)
 
 
 class MaturingItemUpdater(BaseItemUpdater):
@@ -95,9 +95,11 @@ class SulfurasUpdater(BaseItemUpdater):
 
 
 class ConjuredItemUpdater(ItemUpdater):
-    def degrade(self):
-        super().degrade()
-        super().degrade()
+    def standard_update(self):
+        self.degrade(2)
+
+    def expired_update(self):
+        self.degrade(2)
 
 
 class Item:
